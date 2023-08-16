@@ -1,7 +1,0 @@
-Server.js:
-
-Imports Express.js and sets up middleware.
-Imports and uses the routes module to define the application's routes.
-Defines the port number and uses app.listen to start the server.
-Missing: It should also include syncing Sequelize models with the database using the sequelize.sync() method.
-
