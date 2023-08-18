@@ -17,7 +17,7 @@ const sequelize = process.env.JAWSDB_URL
         host: "localhost", // Database host
         dialect: "mysql", // MySQL dialect
         dialectOptions: {
-          decimalNumbers: true, // Convert decimals to numbers
+          decimalNumbers: true,
         },
       }
     );
