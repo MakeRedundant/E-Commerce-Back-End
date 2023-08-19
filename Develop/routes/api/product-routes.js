@@ -152,11 +152,34 @@ router.put("/:id", (req, res) => {
 });
 
 router.delete("/:id", (req, res) => {
-  // delete one product by its `id` value
+  // Deletes one product by its `id` value
+  Product.destroy({
+    where: {
+      id: req.params.id,
+    },
+  })
+    // send back in JSON and see if product matches id
+    .then((deleteProductData) => {
+      // Check if a product was successfully deleted
+      if (!deleteProductData) {
+        // If no product was deleted (false), send a 404 status with a message
+        res
+          .status(404)
+          .json({ message: "Unsuccesful, No products found with this id!!" });
+        return;
+      }
+      // If a product was deleted (true), send back the deleted product data in JSON
+      res.json(deleteProductData);
+    })
+    // If there is an error during the deletion process, catch it and send a response
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err); // 500 is an internal server error
+    });
 });
 
 module.exports = router;
 
 // In summary, this module defines a set of routes that allow you to interact with product data stored in your database.
 // It handles various operations such as retrieving all products, retrieving a single product, creating new products, updating existing products, and deleting products.
-// The module leverages Sequelize models and associations to manage the relationships between products, categories, and tags.
+// The module leverages Sequelize models and associations to manage the relationships between products, categories, and tags
