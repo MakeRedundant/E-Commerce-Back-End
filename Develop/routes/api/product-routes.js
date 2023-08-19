@@ -3,19 +3,79 @@ const { Product, Category, Tag, ProductTag } = require("../../models");
 
 // The `/api/products` endpoint
 
-// get all products
+// Get all products
+//Defines a API endpoint using router.get method to handle the GET all products
 router.get("/", (req, res) => {
   // find all products
-  // be sure to include its associated Category and Tag data
+  Product.findAll({
+    //use product.finalALL() to retrieve all products from the db
+    attributes: [
+      //this is the attirbutes we want to retrieve
+      "id",
+      "product_name",
+      "price",
+      "stock",
+      "category_id",
+    ],
+    // included its associated Category and Tag data
+    include: [
+      {
+        model: Category,
+        attributes: ["category_name"],
+      },
+      {
+        model: Tag,
+        attributes: ["tag_name"],
+        through: ProductTag,
+        as: "tagIds",
+      },
+    ],
+  }) //then() callback sends the retrieved product data back to the client as a JSON
+    .then((productData) => res.json(productData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
-// get one product
+// Gets one product
 router.get("/:id", (req, res) => {
   // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
+  Product.findOne({
+    where: {
+      id: req.params.id,
+    },
+    attributes: ["id", "product_name", "price", "stock", "category_id"],
+    // be sure to include its associated Category and Tag data
+    include: [
+      {
+        model: Category,
+        attributes: ["category_name"],
+      },
+      {
+        model: Tag,
+        attributes: ["tag_name"],
+        through: ProductTag,
+        as: "tagIds",
+      },
+    ],
+  })
+    .then((productData) => {
+      if (!productData) {
+        res
+          .status(404)
+          .json({ message: "Unsuccessful, No product found with that id" });
+        return;
+      }
+      res.json(productData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
-// create new product
+// Create new product
 router.post("/", (req, res) => {
   /* req.body should look like this...
     {
@@ -47,7 +107,7 @@ router.post("/", (req, res) => {
     });
 });
 
-// update product
+// Update product
 router.put("/:id", (req, res) => {
   // update product data
   Product.update(req.body, {
