@@ -57,8 +57,9 @@ Once the databse has been populated, you can now run the server.
 
 ```
 npm start
-(which runs server.js)
+
 ```
+(which runs server.js)
   
 ## 💬 Usage 
 Users can view backend e-commerce data using Insommnia to make HTTP GET, POST, PUT and Delete requests to the e-commerce.db
@@ -79,7 +80,8 @@ https://drive.google.com/file/d/13aAsAFSRms9HSdej-1iIB35jPy7bkXxi/view
 This project is licensed under MIT
   
 ## 🤝 Contributing 
-Brian Trang with thanks to USYD
+Brian Trang
+with thanks to USYD
    
 ## ❔ Questions
 If you have any questions about this project, please contact me directly at brian.trang9@gmail.com. Feel free to view more of my projects at https://github.com/MakeRedundant.
