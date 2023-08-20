@@ -20,12 +20,13 @@ Back end for my e-commerce website that uses Express.js and Sequelize to interac
 <p><a href="https://heroku.com/">Heroku</a></p>
   
 ## 📓 Table of Contents
-* [Installation](#installation)
-* [Usage](#usage)
-* [Screenshot](#screenshot)
-* [License](#license)
-* [Contributing](#contributing)
-* [Questions](#questions)
+* [Installation](#🖥️-installation)
+* [Usage](#💬-usage)
+* [Screenshot](#🖼️-screenshot)
+* [Screencastify](#📹-screencastify)
+* [License](#⚖️-license)
+* [Contributing](#🤝-contributing)
+* [Questions](#❔-questions)
     
 ## 🖥️ Installation 
 To install all necessary dependencies. Please run the following command in your terminal:
